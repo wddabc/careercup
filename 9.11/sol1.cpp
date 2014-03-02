@@ -2,7 +2,7 @@
 * File Name : sol1.cpp
 * Purpose :
 * Creation Date : 01-03-2014
-* Last Modified : Sat Mar  1 20:54:49 2014
+* Last Modified : Sat Mar  1 21:04:15 2014
 * Created By : wdd 
 _._._._._._._._._._._._._._._._._._._._._.*/
 #include "../general.h"
@@ -12,13 +12,17 @@ void add_new(vector<string> &coll, vector<string> &left, vector<string> &right, 
 			for(int j = 0; j < right.size(); ++ j)
 				coll.push_back("(" + left[i] + op + right[j] + ")");
 }
-
+map<string, vector<string> > dp;
 vector<string> genExp(string in, bool tar){
 	if(in.length() == 1){
 		if((in[0]-'0') == tar)
 		  return vector<string>(1,in);
 		else return vector<string>();
 	}
+	string key = in + "_" + (tar?"1":"0");
+	map<string, vector<string> >::iterator itr = dp.find(key);
+	if(itr != dp.end())
+		return itr->second;
 	vector<string> res;
 	for(int i = 0; i < in.length(); ++ i){
 		if(in[i] != '0' && in[i] != '1'){
@@ -52,6 +56,7 @@ vector<string> genExp(string in, bool tar){
 			}
 		}
 	}
+	dp[key] = res;
 	return res;
 }
 vector<string> genExpWrap(string in, bool tar){
