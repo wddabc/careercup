@@ -2,7 +2,7 @@
 * File Name : sol1.cpp
 * Purpose :
 * Creation Date : 01-03-2014
-* Last Modified : Sun Mar  2 01:06:07 2014
+* Last Modified : Sun Mar  2 01:59:22 2014
 * Created By : wdd 
 _._._._._._._._._._._._._._._._._._._._._.*/
 #include "../general.h"
@@ -27,7 +27,6 @@ pair<int, int> search(vector<vector<int> > &mtx, int target, pair<int, int> sw, 
 			continue;
 		}
 	}
-	cout << sw_xi << ":" <<sw_yi << ":" << ne_xi << ":" << ne_yi << endl;
 	pair<int, int> psw = search(mtx, target, sw, make_pair(ne_xi, ne_yi));
 	if(psw.first != -1 && psw.second != -1)
 	  return psw;
